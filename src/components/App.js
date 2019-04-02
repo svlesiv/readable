@@ -1,0 +1,33 @@
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { handleGetPosts } from '../actions/posts';
+
+import Home from './Home';
+import CreateEditPost from './CreateEditPost';
+import PostDetail from './PostDetail';
+import Category from './Category';
+
+class App extends Component {
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(handleGetPosts());
+  }
+
+  render() {
+    return (
+      <Router>
+        <div>
+          <Switch>
+            <Route path='/' exact component={Home}/>
+            <Route path='/:category' exact component={Category}/>
+            <Route path='/add_post' exact component={CreateEditPost}/>
+            <Route path='/:category/:post_id' exact component={PostDetail}/>
+          </Switch>
+        </div>
+      </Router>
+    );
+  }
+}
+
+export default connect()(App);
