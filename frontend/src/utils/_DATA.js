@@ -11,6 +11,17 @@ let posts = [
     }
 ]
 
+export const categories = [
+  {
+    name: 'birds',
+    URL: 'birds'
+  },
+  {
+    name: 'fish',
+    URL: 'fish'
+  }
+]
+
 export function _getPosts () {
   return new Promise((res) => {
     setTimeout(() => res({...posts}), 1000)
