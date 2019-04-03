@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { handleGetPosts } from '../actions/posts';
 import { handleGetCategories } from '../actions/categories';
+import LoadingBar from 'react-redux-loading-bar';
 
 import Home from './Home';
 import CreateEditPost from './CreateEditPost';
@@ -13,13 +14,14 @@ class App extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(handleGetCategories());
-    dispatch(handleGetPosts());
+    // dispatch(handleGetPosts());
   }
 
   render() {
     return (
       <Router>
         <div>
+          <LoadingBar />
           <Switch>
             <Route path='/' exact component={Home}/>
             <Route path='/:category' exact component={Category}/>

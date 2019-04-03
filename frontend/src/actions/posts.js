@@ -1,4 +1,5 @@
 import { fetchPosts } from '../utils/api';
+import { showLoading, hideLoading } from 'react-redux-loading-bar';
 
 export const GET_POSTS = 'GET_POSTS';
 export const ADD_POST = 'ADD_POST';
@@ -35,9 +36,11 @@ export function updatePost (post) {
 
 export function handleGetPosts() {
   return (dispatch) => {
+    dispatch(showLoading());
     return fetchPosts()
       .then(({ posts }) => {
         dispatch(getPosts(posts));
+        dispatch(hideLoading());
       });
   };
 }
