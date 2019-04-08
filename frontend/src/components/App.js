@@ -11,9 +11,13 @@ import PostDetail from './PostDetail';
 import Category from './Category';
 
 class App extends Component {
+  state = {
+    isLoaded: false
+  }
+
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(handleGetCategories());
+    dispatch(handleGetCategories()).then(()=> this.setState({isLoaded: true}));
     // dispatch(handleGetPosts());
   }
 
@@ -21,13 +25,16 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <LoadingBar />
-          <Switch>
-            <Route path='/' exact component={Home}/>
-            <Route path='/:category' exact component={Category}/>
-            <Route path='/add_post' exact component={CreateEditPost}/>
-            <Route path='/:category/:post_id' exact component={PostDetail}/>
-          </Switch>
+          {!this.state.isLoaded ? (
+            <LoadingBar/>
+          ) : (
+            <Switch>
+              <Route path='/' exact component={Home}/>
+              <Route path='/:category' exact component={Category}/>
+              <Route path='/add_post' exact component={CreateEditPost}/>
+              <Route path='/:category/:post_id' exact component={PostDetail}/>
+            </Switch>
+          )}
         </div>
       </Router>
     );

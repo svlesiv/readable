@@ -4,13 +4,15 @@ import { connect } from 'react-redux'
 
 class Home extends Component {
   render() {
-    const { categoriesId, categories } = this.props;
+    const { categories } = this.props;
+
     return (
       <div>
         <p>This is home component</p>
         <ul>
-          {categoriesId.map((categoryId) => (
-            <li key={categoryId}>{categories[categoryId]}</li>
+          {
+            Object.keys(categories).map(index => (
+            <li key={index}>{categories[index].name}</li>
           ))}
         </ul>
         <div><span>map through posts</span>
@@ -23,7 +25,6 @@ class Home extends Component {
 
 function mapStateToProps ({ categories }) {
   return {
-    categoriesId: Object.keys(categories),
     categories
   };
 }
