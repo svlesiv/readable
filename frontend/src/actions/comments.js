@@ -1,12 +1,15 @@
+import { fetchComments } from '../utils/api';
+import { showLoading, hideLoading } from 'react-redux-loading-bar';
+
 export const GET_COMMENTS = 'GET_COMMENTS';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const UPDATE_COMMENT = 'UPDATE_COMMENT';
 
-export function getComments (commments) {
+function getComments (comments) {
   return {
     type: GET_COMMENTS,
-    commments,
+    comments,
   };
 }
 
@@ -28,5 +31,16 @@ export function updateComment (comment) {
   return {
     type: UPDATE_COMMENT,
     comment,
+  };
+}
+
+export function handleGetComments(postId) {
+  return (dispatch) => {
+    dispatch(showLoading());
+    return fetchComments(postId)
+      .then((comments) => {
+        dispatch(getComments(comments));
+        dispatch(hideLoading());
+      });
   };
 }

@@ -17,14 +17,13 @@ class App extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(handleGetCategories()).then(()=> this.setState({isLoaded: true}));
-    dispatch(handleGetPosts());
+    dispatch(handleGetCategories());
+    dispatch(handleGetPosts()).then(()=> this.setState({isLoaded: true}));
   }
 
   render() {
     return (
-      <Router>
-        <div>
+      <Router> 
           {!this.state.isLoaded ? (
             <LoadingBar/>
           ) : (
@@ -35,7 +34,6 @@ class App extends Component {
               <Route path='/:category/:post_id' exact component={PostDetail}/>
             </Switch>
           )}
-        </div>
       </Router>
     );
   }

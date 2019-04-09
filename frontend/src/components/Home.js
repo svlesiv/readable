@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 class Home extends Component {
   render() {
     const { categories, posts } = this.props;
-    
+
     return (
       <div>
         <span>map through categories</span>
@@ -19,7 +19,11 @@ class Home extends Component {
           <ul>
             {
               Object.keys(posts).map(index => (
-              <li key={index}>{posts[index].title}</li>
+              <li key={index}>
+                <Post
+                  post={posts[index]}
+                />
+              </li>
             ))}
           </ul>
       </div>
