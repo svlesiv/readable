@@ -18,7 +18,7 @@ class App extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(handleGetCategories()).then(()=> this.setState({isLoaded: true}));
-    // dispatch(handleGetPosts());
+    dispatch(handleGetPosts());
   }
 
   render() {

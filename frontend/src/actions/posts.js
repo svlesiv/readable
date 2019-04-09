@@ -38,7 +38,7 @@ export function handleGetPosts() {
   return (dispatch) => {
     dispatch(showLoading());
     return fetchPosts()
-      .then(({ posts }) => {
+      .then(posts => {
         dispatch(getPosts(posts));
         dispatch(hideLoading());
       });
