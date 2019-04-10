@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { handleGetComments } from '../actions/comments';
-
-import Comment from './Comment';
+import Header from './Header';
 
 class PostDetail extends Component {
   state = {
@@ -21,6 +20,7 @@ class PostDetail extends Component {
         <p>...loading</p>
         ) : (
           <div>
+            <Header />
             <h1>{post.title}</h1>
             <p>{post.body}</p>
             <p>Comments</p>
