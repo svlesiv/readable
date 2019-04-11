@@ -1,4 +1,4 @@
-import { fetchPosts } from '../utils/api';
+import { fetchPosts, apiAddPost } from '../utils/api';
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
 
 export const GET_POSTS = 'GET_POSTS';
@@ -13,7 +13,7 @@ function getPosts (posts) {
   };
 }
 
-export function addPost (post) {
+function addPost (post) {
   return {
     type: ADD_POST,
     post,
@@ -41,6 +41,15 @@ export function handleGetPosts() {
       .then(posts => {
         dispatch(getPosts(posts));
         dispatch(hideLoading());
+      });
+  };
+}
+
+export function handleAddPost(post) {
+  return (dispatch) => {
+    return apiAddPost(post)
+      .then(post => {
+        dispatch(addPost(post));
       });
   };
 }

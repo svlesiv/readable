@@ -1,31 +1,43 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux'
 
 class Header extends Component {
   state = {
     showCategories: false
   }
+
   toggleCategories = () => {
     this.setState((prev)=>({showCategories: !prev.showCategories}));
   }
+  
   render() {
     const { categories } = this.props;
     const { showCategories } = this.state;
 
     return (
-      <div>
-        <Link to={'/'}>Home</Link>
-        <button onClick={this.toggleCategories}>Categories</button>
-        {showCategories ? (
-          <div>
-          {
-            Object.keys(categories).map(index => (
-            <Link key={index} to={`/${categories[index].name}`}>{categories[index].name}</Link>
-          ))}
-          </div>
-        ) : null}
-      </div>
+      <nav>
+        <ul>
+          <li>
+            <NavLink to={'/'}>Home</NavLink>
+          </li>
+          <li>
+            <NavLink to={'/add_post'} >Create Post</NavLink>
+          </li>
+          <li>
+            <button onClick={this.toggleCategories}>Categories</button>
+            {showCategories 
+              ? (<ul>
+                {Object.keys(categories).map(index => (
+                  <li key={index}>
+                    <NavLink  to={`/${categories[index].name}`}>{categories[index].name}</NavLink>
+                  </li>
+                ))}
+                </ul>) 
+              : null}
+          </li>
+        </ul>
+      </nav>
     );
   }
 }
