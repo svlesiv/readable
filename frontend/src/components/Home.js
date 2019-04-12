@@ -11,16 +11,15 @@ class Home extends Component {
     return (
       <div>
         <Header />
+        <main>
           <ul>
-            {
-              Object.keys(posts).map(index => (
+            {Object.keys(posts).map(index => (
               <li key={index}>
-                <Post
-                  post={posts[index]}
-                />
+                <Post post={posts[index]} />
               </li>
             ))}
           </ul>
+        </main>
       </div>
     );
   }

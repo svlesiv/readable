@@ -59,9 +59,9 @@ class CreateEditPost extends Component {
 
           <label htmlFor='category'></label>
           <select type='text' id='category' name='category' onChange={this.handleChange} value={category}>
-            <option>React</option>
-            <option>Redux</option>
-            <option>Udacity</option>
+            <option>react</option>
+            <option>redux</option>
+            <option>udacity</option>
           </select>
 
           <label htmlFor='title'>Title</label>

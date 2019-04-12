@@ -9,26 +9,36 @@ class PostDetail extends Component {
   }
   componentDidMount() {
     const { dispatch, post_id } = this.props;
- 
+
     dispatch(handleGetComments(post_id)).then(()=> this.setState({isLoaded: true}));
   }
   render() {
     const { post, comments } = this.props;
     return (
       <div>
-        {!this.state.isLoaded ? (
-        <p>...loading</p>
-        ) : (
+        {!this.state.isLoaded
+        ? <p>...loading</p>
+        : (
           <div>
             <Header />
-            <h1>{post.title}</h1>
-            <p>{post.body}</p>
-            <p>Comments</p>
-            <ul>
-            {Object.keys(comments).map(index => (
-              <li key={index}>{comments[index].body}</li>
-            ))}
-            </ul>
+            <main>
+              <article>
+                <header>
+                  <p>{post.voteScore}</p>
+                  <p>{post.author} | {post.timestamp}</p>
+                  <h1>{post.title}</h1>
+                </header>
+                <div>{post.body}</div>
+                <section>
+                  <h2>Comments</h2>
+                  <ul>
+                    {Object.keys(comments).map(index => (
+                      <li key={index}>{comments[index].body}</li>
+                    ))}
+                  </ul>
+                </section>
+              </article>
+            </main>
           </div>
         )}
       </div>
