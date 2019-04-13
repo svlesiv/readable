@@ -30,7 +30,7 @@ class PostDetail extends Component {
   }
 
   render() {
-    const { post, comments } = this.props;
+    const { post, postComments } = this.props;
     const { isEditClick, toHome } = this.state;
 
     if (toHome === true) {
@@ -56,11 +56,13 @@ class PostDetail extends Component {
                 <button onClick={this.handleDelete}>Delete</button>
                 <section>
                   <h2>Comments</h2>
-                  <ul>
-                    {Object.keys(comments).map(index => (
-                      <li key={index}>{comments[index].body}</li>
-                    ))}
-                  </ul>
+                  {postComments.length > 0 ? (
+                     <ul>
+                     {Object.keys(postComments).map(index => (
+                       <li key={index}>{postComments[index].body}</li>
+                     ))}
+                   </ul>
+                  ) : <p>Be first to write a comment.</p>}
                 </section>
               </article>
             </main>
@@ -73,12 +75,14 @@ class PostDetail extends Component {
 
 function mapStateToProps ({ posts, comments }, props) {
   const { post_id } = props.match.params;
-  let index = Object.keys(posts).filter(item => posts[item].id === post_id);
+  const index = Object.keys(posts).filter(item => posts[item].id === post_id);
+  const postCommentsIndexArray = Object.keys(comments).filter(item => comments[item].parentId === post_id);
+  const postComments = postCommentsIndexArray.map(index => comments[index]);
 
   return {
     post_id,
     post: posts[index],
-    comments
+    postComments
   };
 }
 
