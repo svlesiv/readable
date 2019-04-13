@@ -9,7 +9,7 @@ export default function posts (state = {}, action) {
         ...posts,
       };
     case ADD_POST :
-    const { post } = action;
+      const { post } = action;
       return {
         ...state,
         [post.id]: post
@@ -23,6 +23,18 @@ export default function posts (state = {}, action) {
       return {
         ...state,
         [key]: action.post
+      };
+    case DELETE_POST :
+      const k = Object.keys(state).find(key => {
+        if(state[key].id === action.post.id) {
+          return key;
+        }
+      });
+      return {
+        ...state,
+        [k]: {
+          deleted: true
+        }
       };
     default :
       return state;

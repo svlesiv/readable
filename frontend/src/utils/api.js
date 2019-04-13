@@ -32,3 +32,9 @@ export const apiUpdatePost = (post) =>
     },
     body: JSON.stringify(post)
   }).then(data => data.json())
+
+export const apiDeletePost = (post) =>
+  fetch(`http://localhost:3001/posts/${post.id}`, { 
+    method: 'DELETE',
+    headers: { 'Authorization': 'whatever-you-want' }
+  }).then(data => data.json())
