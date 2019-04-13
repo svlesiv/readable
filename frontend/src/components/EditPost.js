@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Header from './Header';
-import '../App.css';
-import { handleAddPost } from '../actions/posts';
-import { uuid } from '../utils/helpers';
 
-class CreateEditPost extends Component {
+import '../App.css';
+import Header from './Header';
+import { handleUpdatePost } from '../actions/posts';
+
+class EditPost extends Component {
   state = {
-    title: '',
-    body: '',
-    author: '',
-    category: 'react',
+    id: this.props.post.id,
+    title: this.props.post.title,
+    body: this.props.post.body,
+    author: this.props.post.author,
+    category: this.props.post.author,
     toHome: false
   };
 
@@ -25,7 +26,7 @@ class CreateEditPost extends Component {
     e.preventDefault();
 
     let post = {
-      id: uuid(),
+      id: this.state.id,
       timestamp: Date.now(),
       title: this.state.title,
       body: this.state.body,
@@ -34,7 +35,7 @@ class CreateEditPost extends Component {
     }
 
     const { dispatch } = this.props;
-    dispatch(handleAddPost(post));
+    dispatch(handleUpdatePost(post));
 
     this.setState({
       toHome: true
@@ -52,7 +53,7 @@ class CreateEditPost extends Component {
       <div>
         <Header />
         <form onSubmit={this.handleSubmit}>
-          <legend>Create a new Post</legend>
+          <legend>Update a Post</legend>
 
           <label htmlFor='author'>Author</label>
           <input type='text' id='author' name='author' onChange={this.handleChange} value={author}/>
@@ -79,4 +80,4 @@ class CreateEditPost extends Component {
   }
 }
 
-export default connect()(CreateEditPost);
+export default connect()(EditPost);

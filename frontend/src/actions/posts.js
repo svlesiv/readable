@@ -1,4 +1,4 @@
-import { fetchPosts, apiAddPost } from '../utils/api';
+import { fetchPosts, apiAddPost, apiUpdatePost } from '../utils/api';
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
 
 export const GET_POSTS = 'GET_POSTS';
@@ -27,7 +27,7 @@ export function deletePost (post) {
   };
 }
 
-export function updatePost (post) {
+function updatePost (post) {
   return {
     type: UPDATE_POST,
     post,
@@ -50,6 +50,15 @@ export function handleAddPost(post) {
     return apiAddPost(post)
       .then(post => {
         dispatch(addPost(post));
+      });
+  };
+}
+
+export function handleUpdatePost(post) {
+  return (dispatch) => {
+    return apiUpdatePost(post)
+      .then(post => {
+        dispatch(updatePost(post));
       });
   };
 }

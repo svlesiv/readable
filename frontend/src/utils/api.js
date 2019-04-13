@@ -22,3 +22,13 @@ export const apiAddPost = (post) =>
     },
     body: JSON.stringify(post)
   }).then(data => data.json())
+
+export const apiUpdatePost = (post) =>
+  fetch(`http://localhost:3001/posts/${post.id}`, {
+    method: 'PUT',
+    headers: { 
+      'Authorization': 'whatever-you-want',
+      'Content-Type': 'application/json' 
+    },
+    body: JSON.stringify(post)
+  }).then(data => data.json())

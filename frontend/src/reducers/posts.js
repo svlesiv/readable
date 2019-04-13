@@ -9,10 +9,20 @@ export default function posts (state = {}, action) {
         ...posts,
       };
     case ADD_POST :
-      const { post } = action;
+    const { post } = action;
       return {
         ...state,
-        [post.id]: post,
+        [post.id]: post
+      };
+    case UPDATE_POST :
+      const key = Object.keys(state).find(key => {
+        if (state[key].id === action.post.id) {
+          return key;
+        }
+      });
+      return {
+        ...state,
+        [key]: action.post
       };
     default :
       return state;
