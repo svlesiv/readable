@@ -1,4 +1,4 @@
-import { fetchComments } from '../utils/api';
+import { fetchComments, apiAddComment } from '../utils/api';
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
 
 export const GET_COMMENTS = 'GET_COMMENTS';
@@ -13,7 +13,7 @@ function getComments (comments) {
   };
 }
 
-export function addComment (comment) {
+function addComment (comment) {
   return {
     type: ADD_COMMENT,
     comment,
@@ -41,6 +41,15 @@ export function handleGetComments(postId) {
       .then((comments) => {
         dispatch(getComments(comments));
         dispatch(hideLoading());
+      });
+  };
+}
+
+export function handleAddComment(comment, post) {
+  return (dispatch) => {
+    return apiAddComment(comment)
+      .then(comment => {
+        dispatch(addComment(comment));
       });
   };
 }

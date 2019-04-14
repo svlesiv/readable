@@ -6,6 +6,8 @@ import { handleGetComments } from '../actions/comments';
 import { handleDeletePost } from '../actions/posts';
 import Header from './Header';
 import EditPost from './EditPost';
+import Comment from './Comment';
+import CreateComment from './CreateComment';
 
 class PostDetail extends Component {
   state = {
@@ -56,13 +58,15 @@ class PostDetail extends Component {
                 <button onClick={this.handleDelete}>Delete</button>
                 <section>
                   <h2>Comments</h2>
-                  {postComments.length > 0 ? (
-                     <ul>
-                     {Object.keys(postComments).map(index => (
-                       <li key={index}>{postComments[index].body}</li>
-                     ))}
-                   </ul>
-                  ) : <p>Be first to write a comment.</p>}
+                  <CreateComment post={post}/>
+                  {/* list of comments */}
+                  <ul>
+                    {Object.keys(postComments).map(index => (
+                      <li key={index}>
+                        <Comment comment={postComments[index]}/>
+                      </li>
+                    ))}
+                  </ul>
                 </section>
               </article>
             </main>

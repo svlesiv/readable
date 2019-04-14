@@ -12,7 +12,7 @@ class EditPost extends Component {
     title: this.props.post.title,
     body: this.props.post.body,
     author: this.props.post.author,
-    category: this.props.post.author,
+    category: this.props.post.category,
     toHome: false
   };
 
