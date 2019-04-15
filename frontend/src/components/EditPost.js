@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import '../App.css';
 import Header from './Header';
 import { handleUpdatePost } from '../actions/posts';
 
@@ -12,8 +11,7 @@ class EditPost extends Component {
     title: this.props.post.title,
     body: this.props.post.body,
     author: this.props.post.author,
-    category: this.props.post.category,
-    toHome: false
+    category: this.props.post.category
   };
 
   handleChange = (e) => {
@@ -37,17 +35,11 @@ class EditPost extends Component {
     const { dispatch } = this.props;
     dispatch(handleUpdatePost(post));
 
-    this.setState({
-      toHome: true
-    })
+    this.props.history.go(0);
   }
 
   render() {
-    const { author, category, title, body, toHome } = this.state;
-
-    if (toHome === true) {
-      return <Redirect to='/' />
-    }
+    const { author, category, title, body } = this.state;
 
     return (
       <div>
@@ -80,4 +72,4 @@ class EditPost extends Component {
   }
 }
 
-export default connect()(EditPost);
+export default withRouter(connect()(EditPost));

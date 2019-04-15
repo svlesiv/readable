@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { handleGetPosts } from '../actions/posts';
 import { handleGetCategories } from '../actions/categories';
 import LoadingBar from 'react-redux-loading-bar';
+import '../App.css';
 
 import Home from './Home';
 import CreatePost from './CreatePost';

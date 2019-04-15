@@ -14,6 +14,16 @@ export default function comments (state = {}, action) {
         ...state,
         [comment.id]: comment,
       };
+    case UPDATE_COMMENT :
+      const key = Object.keys(state).find(key => {
+        if (state[key].id === action.comment.id) {
+          return key;
+        }
+      });
+      return {
+        ...state,
+        [key]: action.comment
+      };
     case DELETE_COMMENT :
       const k = Object.keys(state).find(key => {
         if(state[key].id === action.comment.id) {
