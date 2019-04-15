@@ -48,3 +48,9 @@ export const apiAddComment = (comment) =>
     },
     body: JSON.stringify(comment)
   }).then(data => data.json())
+
+export const apiDeleteComment = (comment) =>
+  fetch(`http://localhost:3001/comments/${comment.id}`, { 
+    method: 'DELETE',
+    headers: { 'Authorization': 'whatever-you-want' }
+  }).then(data => data.json())

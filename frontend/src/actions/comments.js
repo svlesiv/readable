@@ -1,4 +1,4 @@
-import { fetchComments, apiAddComment } from '../utils/api';
+import { fetchComments, apiAddComment, apiDeleteComment } from '../utils/api';
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
 
 export const GET_COMMENTS = 'GET_COMMENTS';
@@ -20,7 +20,7 @@ function addComment (comment) {
   };
 }
 
-export function deleteComment (comment) {
+function deleteComment (comment) {
   return {
     type: DELETE_COMMENT,
     comment,
@@ -50,6 +50,15 @@ export function handleAddComment(comment, post) {
     return apiAddComment(comment)
       .then(comment => {
         dispatch(addComment(comment));
+      });
+  };
+}
+
+export function handleDeleteComment(comment) {
+  return (dispatch) => {
+    return apiDeleteComment(comment)
+      .then(comment => {
+        dispatch(deleteComment(comment));
       });
   };
 }
