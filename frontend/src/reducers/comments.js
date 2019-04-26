@@ -1,4 +1,4 @@
-import { GET_COMMENTS, ADD_COMMENT, DELETE_COMMENT, UPDATE_COMMENT } from '../actions/comments';
+import { GET_COMMENTS, ADD_COMMENT, DELETE_COMMENT, UPDATE_COMMENT, UP_VOTE_COMMENT, DOWN_VOTE_COMMENT } from '../actions/comments';
 
 export default function comments (state = {}, action) {
   switch(action.type) {
@@ -34,6 +34,32 @@ export default function comments (state = {}, action) {
         ...state,
         [k]: {
           deleted: true
+        }
+      };
+    case UP_VOTE_COMMENT :
+      const e = Object.keys(state).find(key => {
+        if(state[key].id === action.comment.id) {
+          return key;
+        }
+      });
+      return {
+        ...state,
+        [e]: {
+          ...action.comment,
+          voteScore: action.comment.voteScore + 1
+        }
+      };
+    case DOWN_VOTE_COMMENT :
+      const c = Object.keys(state).find(key => {
+        if(state[key].id === action.comment.id) {
+          return key;
+        }
+      });
+      return {
+        ...state,
+        [c]: {
+          ...action.comment,
+          voteScore: action.comment.voteScore - 1
         }
       };
     default :

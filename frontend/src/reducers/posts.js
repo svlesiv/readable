@@ -1,4 +1,4 @@
-import { GET_POSTS, ADD_POST, DELETE_POST, UPDATE_POST } from '../actions/posts';
+import { GET_POSTS, ADD_POST, DELETE_POST, UPDATE_POST, UP_VOTE, DOWN_VOTE } from '../actions/posts';
 
 export default function posts (state = {}, action) {
   switch(action.type) {
@@ -34,6 +34,32 @@ export default function posts (state = {}, action) {
         ...state,
         [k]: {
           deleted: true
+        }
+      };
+    case UP_VOTE :
+      const e = Object.keys(state).find(key => {
+        if (state[key].id === action.post.id) {
+          return key;
+        }
+      });
+      return {
+        ...state,
+        [e]: {
+          ...action.post,
+          voteScore: action.post.voteScore + 1
+        }
+      };
+    case DOWN_VOTE :
+      const c = Object.keys(state).find(key => {
+        if (state[key].id === action.post.id) {
+          return key;
+        }
+      });
+      return {
+        ...state,
+        [c]: {
+          ...action.post,
+          voteScore: action.post.voteScore - 1
         }
       };
     default :

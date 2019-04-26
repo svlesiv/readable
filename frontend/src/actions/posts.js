@@ -5,6 +5,8 @@ export const GET_POSTS = 'GET_POSTS';
 export const ADD_POST = 'ADD_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const UPDATE_POST = 'UPDATE_POST';
+export const UP_VOTE = 'UP_VOTE';
+export const DOWN_VOTE = 'DOWN_VOTE';
 
 function getPosts (posts) {
   return {
@@ -30,6 +32,20 @@ function deletePost (post) {
 function updatePost (post) {
   return {
     type: UPDATE_POST,
+    post,
+  };
+}
+
+function upVote (post) {
+  return {
+    type: UP_VOTE,
+    post,
+  };
+}
+
+function downVote (post) {
+  return {
+    type: DOWN_VOTE,
     post,
   };
 }
@@ -68,6 +84,24 @@ export function handleDeletePost(post) {
     return apiDeletePost(post)
       .then(post => {
         dispatch(deletePost(post));
+      });
+  };
+}
+
+export function handleUpVote(post) {
+  return (dispatch) => {
+    return apiUpdatePost(post)
+      .then(post => {
+        dispatch(upVote(post));
+      });
+  };
+}
+
+export function handleDownVote(post) {
+  return (dispatch) => {
+    return apiUpdatePost(post)
+      .then(post => {
+        dispatch(downVote(post));
       });
   };
 }

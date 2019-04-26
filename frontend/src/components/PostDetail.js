@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import { handleGetComments } from '../actions/comments';
-import { handleDeletePost } from '../actions/posts';
+import { handleDeletePost, handleUpVote, handleDownVote } from '../actions/posts';
 import Header from './Header';
 import EditPost from './EditPost';
 import Comment from './Comment';
@@ -31,6 +31,16 @@ class PostDetail extends Component {
     });
   }
 
+  handleUp = () => {
+    const { dispatch, post } = this.props;
+    dispatch(handleUpVote(post));
+  }
+
+  handleDown = () => {
+    const { dispatch, post } = this.props;
+    dispatch(handleDownVote(post));
+  }
+
   render() {
     const { post, postComments } = this.props;
     const { isEditClick, toHome } = this.state;
@@ -49,7 +59,11 @@ class PostDetail extends Component {
             <main>
               <article>
                 <header>
-                  <p>Votes: {post.voteScore}</p>
+                  <div>
+                    <p>Votes: {post.voteScore}</p>
+                    <button onClick={this.handleUp}>UP</button>
+                    <button onClick={this.handleDown}>DOWN</button>
+                  </div>
                   <p>Posted on <time daytime={post.timestamp}>{post.timestamp}</time> by {post.author}</p>
                   <h1>{post.title}</h1>
                 </header>

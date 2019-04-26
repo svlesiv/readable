@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { handleDeleteComment } from '../actions/comments';
+import { handleDeleteComment, handleUpVoteComment, handleDownVoteComment } from '../actions/comments';
 import EditComment from './EditComment';
 
 class Comment extends Component {
@@ -18,6 +18,16 @@ class Comment extends Component {
     dispatch(handleDeleteComment(comment));
   }
 
+  handleUp = () => {
+    const { dispatch, comment } = this.props;
+    dispatch(handleUpVoteComment(comment));
+  }
+
+  handleDown = () => {
+    const { dispatch, comment } = this.props;
+    dispatch(handleDownVoteComment(comment));
+  }
+
   render() {
     const { comment } = this.props;
     const { isEditClick } = this.state;
@@ -29,7 +39,11 @@ class Comment extends Component {
           : (
           <section>
             <header>
-              <p>Votes: {comment.voteScore}</p>
+              <div>
+                <p>Votes: {comment.voteScore}</p>
+                <button onClick={this.handleUp}>UP</button>
+                <button onClick={this.handleDown}>DOWN</button>
+              </div>
               <p>Posted on <time daytime={comment.timestamp}>{comment.timestamp}</time> by {comment.author}</p>
             </header>
             <div>

@@ -5,6 +5,8 @@ export const GET_COMMENTS = 'GET_COMMENTS';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const UPDATE_COMMENT = 'UPDATE_COMMENT';
+export const UP_VOTE_COMMENT = 'UP_VOTE_COMMENT';
+export const DOWN_VOTE_COMMENT = 'DOWN_VOTE_COMMENT';
 
 function getComments (comments) {
   return {
@@ -30,6 +32,19 @@ function deleteComment (comment) {
 function updateComment (comment) {
   return {
     type: UPDATE_COMMENT,
+    comment,
+  };
+}
+function upVoteComment (comment) {
+  return {
+    type: UP_VOTE_COMMENT,
+    comment,
+  };
+}
+
+function downVoteComment (comment) {
+  return {
+    type: DOWN_VOTE_COMMENT,
     comment,
   };
 }
@@ -68,6 +83,24 @@ export function handleDeleteComment(comment) {
     return apiDeleteComment(comment)
       .then(comment => {
         dispatch(deleteComment(comment));
+      });
+  };
+}
+
+export function handleUpVoteComment(comment) {
+  return (dispatch) => {
+    return apiUpdateComment(comment)
+      .then(comment => {
+        dispatch(upVoteComment(comment));
+      });
+  };
+}
+
+export function handleDownVoteComment(comment) {
+  return (dispatch) => {
+    return apiUpdateComment(comment)
+      .then(comment => {
+        dispatch(downVoteComment(comment));
       });
   };
 }
