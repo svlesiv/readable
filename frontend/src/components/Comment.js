@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Moment from 'react-moment';
 
 import { handleDeleteComment, handleUpVoteComment, handleDownVoteComment } from '../actions/comments';
 import EditComment from './EditComment';
@@ -44,7 +45,10 @@ class Comment extends Component {
                 <button onClick={this.handleUp}>UP</button>
                 <button onClick={this.handleDown}>DOWN</button>
               </div>
-              <p>Posted on <time daytime={comment.timestamp}>{comment.timestamp}</time> by {comment.author}</p>
+              <p>Posted on <time daytime={comment.timestamp}>
+                <Moment format="MM-DD-YYYY">{comment.timestamp}</Moment>
+                </time> by {comment.author}
+              </p>
             </header>
             <div>
               {comment.body}

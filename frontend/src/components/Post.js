@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Moment from 'react-moment';
 
 import { handleUpVote, handleDownVote } from '../actions/posts';
 
@@ -28,7 +29,10 @@ class Post extends Component {
                 <button onClick={this.handleUp}>UP</button>
                 <button onClick={this.handleDown}>DOWN</button>
               </div>
-             <p>Posted on <time daytime={post.timestamp}>{post.timestamp}</time> by {post.author}</p>
+             <p>Posted on <time daytime={post.timestamp}>
+                <Moment format="MM-DD-YYYY">{Math.floor(post.timestamp/2)}</Moment>
+                </time> by {post.author}
+              </p>
               <Link to={`/${post.category}/${post.id}`}><h1>{post.title}</h1></Link>
             </header>
             {/* todo: set max number of characters to display */}

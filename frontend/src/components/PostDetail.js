@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import Moment from 'react-moment';
 
 import { handleGetComments } from '../actions/comments';
 import { handleDeletePost, handleUpVote, handleDownVote } from '../actions/posts';
@@ -64,7 +65,10 @@ class PostDetail extends Component {
                     <button onClick={this.handleUp}>UP</button>
                     <button onClick={this.handleDown}>DOWN</button>
                   </div>
-                  <p>Posted on <time daytime={post.timestamp}>{post.timestamp}</time> by {post.author}</p>
+                  <p>Posted on <time daytime={post.timestamp}>
+                    <Moment format="MM-DD-YYYY">{Math.floor(post.timestamp)}</Moment>
+                    </time> by {post.author}
+                  </p>
                   <h1>{post.title}</h1>
                 </header>
                 <div>{post.body}</div>
