@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import { sortByDate, sortPosts } from '../utils/helpers';
 
 import Post from './Post';
 import Header from './Header';
+import Sort from './Sort';
 
 class Home extends Component {
   render() {
-    const { posts } = this.props;
+    const { sortedPosts } = this.props;
 
     return (
       <div>
         <Header />
+        <Sort />
         <main>
           <ul>
-            {Object.keys(posts).map(index => (
+            {Object.keys(sortedPosts).map(index => (
               <li key={index}>
-                <Post post={posts[index]} />
+                <Post post={sortedPosts[index]} />
               </li>
             ))}
           </ul>
@@ -26,8 +29,12 @@ class Home extends Component {
 }
 
 function mapStateToProps ({ posts }) {
+  const sortedByDate = sortByDate(posts);
+  const sortedByVote = {};
+  const sortedPosts = sortPosts(posts, sortedByDate, sortedByVote);
+
   return {
-    posts
+    sortedPosts
   };
 }
 

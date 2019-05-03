@@ -1,4 +1,4 @@
-import { GET_POSTS, ADD_POST, DELETE_POST, UPDATE_POST, UP_VOTE, DOWN_VOTE } from '../actions/posts';
+import { GET_POSTS, ADD_POST, DELETE_POST, UPDATE_POST, UP_VOTE, DOWN_VOTE, SET_SORT } from '../actions/posts';
 
 export default function posts (state = {}, action) {
   switch(action.type) {
@@ -61,6 +61,11 @@ export default function posts (state = {}, action) {
           ...action.post,
           voteScore: action.post.voteScore - 1
         }
+      };
+    case SET_SORT :
+      return {
+        ...state,
+        sortBy: action.sort,
       };
     default :
       return state;
