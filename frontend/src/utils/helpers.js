@@ -2,81 +2,81 @@ export function uuid() {
   return (Math.random()*16).toString(16).substring(2);
 }
 
-export function sortByDate(posts) {
+function sortByDate(object) {
   const sortedIds = [];
-  const sortedPosts = {};
+  const sortedObject = {};
 
   let timestampsArr = [],
       timestampsMap = new Map();
-  Object.keys(posts).map(index => {
-    if(posts[index].timestamp){
-      timestampsArr.push(posts[index].timestamp);
-      timestampsMap.set(posts[index].timestamp, index);
+  Object.keys(object).map(index => {
+    if(object[index].timestamp) {
+      timestampsArr.push(object[index].timestamp);
+      timestampsMap.set(object[index].timestamp, index);
     }
   });
   
-  if(!posts.sortBy || posts.sortBy === "dateNew") {
+  if(!object.sortBy || object.sortBy === "dateNew") {
     timestampsArr = timestampsArr.sort((a, b) => b - a);
   } else {
     timestampsArr = timestampsArr.sort((a, b) => a - b);
   }
   
   for(let date of timestampsArr) { 
-    sortedIds.push(posts[timestampsMap.get(date)].id);
+    sortedIds.push(object[timestampsMap.get(date)].id);
   }
   
   for (let i = 0; i < sortedIds.length; i++) {
-    Object.keys(posts).forEach(index => {
-      if (sortedIds[i] === posts[index].id){
-        sortedPosts[i] = posts[index];
+    Object.keys(object).forEach(index => {
+      if (sortedIds[i] === object[index].id){
+        sortedObject[i] = object[index];
       }
     });
   }
   
-  return sortedPosts;
+  return sortedObject;
 }
 
-export function sortByVote(posts) {
+function sortByVote(object) {
   const sortedIds = [];
-  const sortedPosts = {};
+  const sortedObject = {};
 
   let voteArr = [],
       voteMap = new Map();
-  Object.keys(posts).map(index => {
-    if(posts[index].voteScore){
-      voteArr.push(posts[index].voteScore);
-      voteMap.set(posts[index].voteScore, index);
+  Object.keys(object).map(index => {
+    if(object[index].voteScore) {
+      voteArr.push(object[index].voteScore);
+      voteMap.set(object[index].voteScore, index);
     }
   });
   
-  if(posts.sortBy === "voteHigh") {
+  if(object.sortBy === "voteHigh") {
     voteArr = voteArr.sort((a, b) => b - a);
   } else {
     voteArr = voteArr.sort((a, b) => a - b);
   }
   
   for(let date of voteArr) { 
-    sortedIds.push(posts[voteMap.get(date)].id);
+    sortedIds.push(object[voteMap.get(date)].id);
   }
   
   for (let i = 0; i < sortedIds.length; i++) {
-    Object.keys(posts).forEach(index => {
-      if (sortedIds[i] === posts[index].id){
-        sortedPosts[i] = posts[index];
+    Object.keys(object).forEach(index => {
+      if (sortedIds[i] === object[index].id){
+        sortedObject[i] = object[index];
       }
     });
   }
 
-  return sortedPosts;
+  return sortedObject;
 }
 
-export function sortPosts(posts, sortedByDate, sortedByVote) {
-  let sortedPosts = {};
+export function sort(object) {
+  let sortedObject = {};
 
-  if (!posts.sortBy || posts.sortBy === "dateNew" || posts.sortBy === "dateOld") {
-    sortedPosts = sortedByDate;
+  if (!object.sortBy || object.sortBy === "dateNew" || object.sortBy === "dateOld") {
+    sortedObject = sortByDate(object);
   } else {
-    sortedPosts = sortedByVote;
+    sortedObject = sortByVote(object);
   }
-  return sortedPosts;
+  return sortedObject;
 }

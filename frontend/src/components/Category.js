@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { sortByDate, sortByVote, sortPosts } from '../utils/helpers';
+import { sort } from '../utils/helpers';
 
 import Post from './Post';
 import Header from './Header';
@@ -29,9 +29,7 @@ class Category extends Component {
 }
 
 function mapStateToProps ({ posts }, props) {
-  const sortedByDate = sortByDate(posts);
-  const sortedByVote = sortByVote(posts);
-  const sortedPosts = sortPosts(posts, sortedByDate, sortedByVote);
+  const sortedPosts = sort(posts);
 
   const categoryName = props.match.params.category;
   const categoryPostsIndexArray = Object.keys(sortedPosts).filter(item => sortedPosts[item].category === categoryName);

@@ -5,10 +5,12 @@ import Moment from 'react-moment';
 
 import { handleGetComments } from '../actions/comments';
 import { handleDeletePost, handleUpVote, handleDownVote } from '../actions/posts';
+import { sort } from '../utils/helpers';
 import Header from './Header';
 import EditPost from './EditPost';
 import Comment from './Comment';
 import CreateComment from './CreateComment';
+import Sort from './Sort';
 
 class PostDetail extends Component {
   state = {
@@ -77,6 +79,7 @@ class PostDetail extends Component {
                 <section>
                   <h2>Comments</h2>
                   <CreateComment post={post}/>
+                  <Sort sortFor="comment"/>
                   {/* list of comments */}
                   <ul>
                     {Object.keys(postComments).map(index => (
@@ -96,10 +99,12 @@ class PostDetail extends Component {
 }
 
 function mapStateToProps ({ posts, comments }, props) {
+  const sortedComments = sort(comments);
+
   const { post_id } = props.match.params;
   const index = Object.keys(posts).filter(item => posts[item].id === post_id);
-  const postCommentsIndexArray = Object.keys(comments).filter(item => comments[item].parentId === post_id);
-  const postComments = postCommentsIndexArray.map(index => comments[index]);
+  const postCommentsIndexArray = Object.keys(sortedComments).filter(item => sortedComments[item].parentId === post_id);
+  const postComments = postCommentsIndexArray.map(index => sortedComments[index]);
 
   return {
     post_id,

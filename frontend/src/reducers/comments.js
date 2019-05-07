@@ -1,4 +1,7 @@
-import { GET_COMMENTS, ADD_COMMENT, DELETE_COMMENT, UPDATE_COMMENT, UP_VOTE_COMMENT, DOWN_VOTE_COMMENT } from '../actions/comments';
+import { 
+  GET_COMMENTS, ADD_COMMENT, DELETE_COMMENT, UPDATE_COMMENT, 
+  UP_VOTE_COMMENT, DOWN_VOTE_COMMENT, SET_SORT_COMMENT
+} from '../actions/comments';
 
 export default function comments (state = {}, action) {
   switch(action.type) {
@@ -61,6 +64,11 @@ export default function comments (state = {}, action) {
           ...action.comment,
           voteScore: action.comment.voteScore - 1
         }
+      };
+    case SET_SORT_COMMENT :
+      return {
+        ...state,
+        sortBy: action.sort
       };
     default :
       return state;
