@@ -13,9 +13,11 @@ class Sort extends Component {
     return(
       <form>
         <select onChange={this.handleChange}>
-          <option value = ''>---Sort By:---</option>
-          <option value = 'date'>Newest first</option>
-          <option value = 'vote'>Highest voted</option>
+          <option value = '' disabled>---Sort By:---</option>
+          <option value = 'dateNew'>Newest first</option>
+          <option value = 'dateOld'>Oldest first</option>
+          <option value = 'voteHigh'>Highest voted</option>
+          <option value = 'voteLow'>Lowest voted</option>
         </select>
       </form>
     )
