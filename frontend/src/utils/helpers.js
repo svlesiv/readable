@@ -33,8 +33,39 @@ export function sortByDate(posts) {
   return sortedPosts;
 }
 
-export function sortPosts(posts, sortedByDate, sortedByVote) {
+export function sortByVote(posts) {
+  const sortedIds = [];
   const sortedPosts = {};
+
+  if(posts.sortBy === "vote"){
+    let voteArr = [],
+        voteMap = new Map();
+    Object.keys(posts).map(index => {
+      if(posts[index].voteScore){
+        voteArr.push(posts[index].voteScore);
+        voteMap.set(posts[index].voteScore, index);
+      }
+    });
+    
+    voteArr = voteArr.sort((a, b) => b - a);
+    
+    for(let date of voteArr) { 
+      sortedIds.push(posts[voteMap.get(date)].id);
+    }
+    
+    for (let i = 0; i < sortedIds.length; i++) {
+      Object.keys(posts).forEach(index => {
+        if (sortedIds[i] === posts[index].id){
+          sortedPosts[i] = posts[index];
+        }
+      })
+    }
+  }
+  return sortedPosts;
+}
+
+export function sortPosts(posts, sortedByDate, sortedByVote) {
+  let sortedPosts = {};
 
   if(!posts.sortBy) {
     sortedPosts = posts;

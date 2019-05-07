@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { sortByDate, sortPosts } from '../utils/helpers';
+import { sortByDate, sortByVote, sortPosts } from '../utils/helpers';
 
 import Post from './Post';
 import Header from './Header';
@@ -30,7 +30,7 @@ class Home extends Component {
 
 function mapStateToProps ({ posts }) {
   const sortedByDate = sortByDate(posts);
-  const sortedByVote = {};
+  const sortedByVote = sortByVote(posts);
   const sortedPosts = sortPosts(posts, sortedByDate, sortedByVote);
 
   return {
