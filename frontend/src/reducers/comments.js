@@ -3,6 +3,15 @@ import {
   UP_VOTE_COMMENT, DOWN_VOTE_COMMENT, SET_SORT_COMMENT
 } from '../actions/comments';
 
+function findKey(state, id) {
+  const key = Object.keys(state).find(key => {
+    if (state[key].id === id) {
+      return key;
+    }
+  });
+  return key
+}
+
 export default function comments (state = {}, action) {
   switch(action.type) {
     case GET_COMMENTS :
@@ -18,49 +27,33 @@ export default function comments (state = {}, action) {
         [comment.id]: comment,
       };
     case UPDATE_COMMENT :
-      const key = Object.keys(state).find(key => {
-        if (state[key].id === action.comment.id) {
-          return key;
-        }
-      });
+      const keyUpdate = findKey(state, action.comment.id);
       return {
         ...state,
-        [key]: action.comment
+        [keyUpdate]: action.comment
       };
     case DELETE_COMMENT :
-      const k = Object.keys(state).find(key => {
-        if(state[key].id === action.comment.id) {
-          return key;
-        }
-      });
+      const keyDelete = findKey(state, action.comment.id);
       return {
         ...state,
-        [k]: {
+        [keyDelete]: {
           deleted: true
         }
       };
     case UP_VOTE_COMMENT :
-      const e = Object.keys(state).find(key => {
-        if(state[key].id === action.comment.id) {
-          return key;
-        }
-      });
+      const keyUpVote = findKey(state, action.comment.id);
       return {
         ...state,
-        [e]: {
+        [keyUpVote]: {
           ...action.comment,
           voteScore: action.comment.voteScore + 1
         }
       };
     case DOWN_VOTE_COMMENT :
-      const c = Object.keys(state).find(key => {
-        if(state[key].id === action.comment.id) {
-          return key;
-        }
-      });
+      const keyDownVote = findKey(state, action.comment.id);
       return {
         ...state,
-        [c]: {
+        [keyDownVote]: {
           ...action.comment,
           voteScore: action.comment.voteScore - 1
         }

@@ -1,4 +1,16 @@
-import { GET_POSTS, ADD_POST, DELETE_POST, UPDATE_POST, UP_VOTE, DOWN_VOTE, SET_SORT } from '../actions/posts';
+import { 
+  GET_POSTS, ADD_POST, DELETE_POST, UPDATE_POST, 
+  UP_VOTE, DOWN_VOTE, SET_SORT 
+} from '../actions/posts';
+
+function findKey(state, id) {
+  const key = Object.keys(state).find(key => {
+    if (state[key].id === id) {
+      return key;
+    }
+  });
+  return key;
+}
 
 export default function posts (state = {}, action) {
   switch(action.type) {
@@ -15,49 +27,33 @@ export default function posts (state = {}, action) {
         [post.id]: post
       };
     case UPDATE_POST :
-      const key = Object.keys(state).find(key => {
-        if (state[key].id === action.post.id) {
-          return key;
-        }
-      });
+      const keyUpdate = findKey(state, action.post.id);
       return {
         ...state,
-        [key]: action.post
+        [keyUpdate]: action.post
       };
     case DELETE_POST :
-      const k = Object.keys(state).find(key => {
-        if(state[key].id === action.post.id) {
-          return key;
-        }
-      });
+      const keyDelete = findKey(state, action.post.id);
       return {
         ...state,
-        [k]: {
+        [keyDelete]: {
           deleted: true
         }
       };
     case UP_VOTE :
-      const e = Object.keys(state).find(key => {
-        if (state[key].id === action.post.id) {
-          return key;
-        }
-      });
+      const keyUpVote = findKey(state, action.post.id);
       return {
         ...state,
-        [e]: {
+        [keyUpVote]: {
           ...action.post,
           voteScore: action.post.voteScore + 1
         }
       };
     case DOWN_VOTE :
-      const c = Object.keys(state).find(key => {
-        if (state[key].id === action.post.id) {
-          return key;
-        }
-      });
+      const keyDownVote = findKey(state, action.post.id);
       return {
         ...state,
-        [c]: {
+        [keyDownVote]: {
           ...action.post,
           voteScore: action.post.voteScore - 1
         }
