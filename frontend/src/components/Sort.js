@@ -16,15 +16,16 @@ class Sort extends Component {
 
   render(){
     return(
-      <form>
-        <select onChange={this.handleChange}>
-          <option value = '' disabled>---Sort By:---</option>
-          <option value = 'dateNew'>Newest first</option>
-          <option value = 'dateOld'>Oldest first</option>
-          <option value = 'voteHigh'>Highest voted</option>
-          <option value = 'voteLow'>Lowest voted</option>
-        </select>
-      </form>
+      <p>SORT 
+        <form className="sort">
+          <select onChange={this.handleChange}>
+            <option value = 'dateNew'>Newest first</option>
+            <option value = 'dateOld'>Oldest first</option>
+            <option value = 'voteHigh'>Highest voted</option>
+            <option value = 'voteLow'>Lowest voted</option>
+          </select>
+        </form>
+      </p>
     )
   }
 }

@@ -25,7 +25,7 @@ class Header extends Component {
             <NavLink to={'/add_post'} >Create Post</NavLink>
           </li>
           <li>
-            <button onClick={this.toggleCategories}>Categories</button>
+            <button onClick={this.toggleCategories}>Categories
             {showCategories 
               ? (<ul>
                 {Object.keys(categories).map(index => (
@@ -35,6 +35,7 @@ class Header extends Component {
                 ))}
                 </ul>) 
               : null}
+              </button>
           </li>
         </ul>
       </nav>

@@ -1,0 +1,59 @@
+form {
+  background-color: $light-base-color;
+  padding: 4vh 2vw;
+  border-radius: 4px;
+  border: 1px solid $dark-base-color;
+
+  legend {
+    color: $accent-color;
+    font-size: var(--h3-font-size);
+  }
+  select, input, textarea {
+    display: block;
+    cursor: pointer;
+    margin: 2vh 0;
+    padding: 0.5em;
+    width: 100%;
+    font-family: $font-family-body;
+    border: 1px solid $dark-base-color;
+    border-radius: 4px;
+    background-color: $base-color;
+    color: darken($text-color, 5);
+    option {
+      color: darken($text-color, 30);
+    }
+  }
+  label {
+    margin-top: 5vh;
+    font-family: $font-family-header;
+    color: darken($accent-color, 5);
+  }
+}
+
+.sort {
+  background-color: $base-color;
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: 20vw;
+  display: inline-block;
+  select {
+    border: none;
+    color: $accent-color;
+    font-size: var(--base-font-size);
+  }
+  // remove arrows
+  // https://stackoverflow.com/questions/16603979/how-to-remove-the-default-arrow-icon-from-a-dropdown-list-select-element
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+  }
+}
+
+@media (min-width: $desktop-width) {
+  form {
+    width: 60vw;
+  }
+}

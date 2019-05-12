@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Header from './Header';
-import '../App.css';
 import { handleAddPost } from '../actions/posts';
 import { uuid } from '../utils/helpers';
 
@@ -53,22 +52,16 @@ class CreatePost extends Component {
         <Header />
         <form onSubmit={this.handleSubmit}>
           <legend>Create a new Post</legend>
+          <input type='text' id='author' name='author' onChange={this.handleChange} value={author} placeholder="Author"/>
 
-          <label htmlFor='author'>Author</label>
-          <input type='text' id='author' name='author' onChange={this.handleChange} value={author}/>
-
-          <label htmlFor='category'></label>
           <select type='text' id='category' name='category' onChange={this.handleChange} value={category}>
             <option>react</option>
             <option>redux</option>
             <option>udacity</option>
           </select>
 
-          <label htmlFor='title'>Title</label>
-          <input type='text' id='title' name='title' onChange={this.handleChange} value={title} />
-
-          <label htmlFor='body'>Content</label>
-          <textarea type='text' id='body' name='body' onChange={this.handleChange} value={body}/>
+          <input type='text' id='title' name='title' onChange={this.handleChange} value={title} placeholder="Title"/>
+          <textarea type='text' id='body' name='body' onChange={this.handleChange} value={body} placeholder="Content" rows="6"/>
 
           <button type='submit' disabled={author === '' || category === '' || title === '' || body === '' }>
             Submit

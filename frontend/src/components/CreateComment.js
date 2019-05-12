@@ -37,13 +37,8 @@ class CreateComment extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <legend>Add a Comment</legend>
-
-        <label htmlFor='author'>author</label>
-        <input type='text' id='author' name='author' onChange={this.handleChange} value={author}/>
-
-        <label htmlFor='body'>comment</label>
-        <textarea type='text' id='body' name='body' onChange={this.handleChange} value={body}/>
-
+        <input type='text' id='author' name='author' onChange={this.handleChange} value={author} placeholder="Author"/>
+        <textarea type='text' id='body' name='body' onChange={this.handleChange} value={body} placeholder="Comment" rows="6"/>
         <button type='submit' disabled={author === '' || body === ''}>Submit</button>
     </form>
     );

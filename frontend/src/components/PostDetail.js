@@ -60,7 +60,7 @@ class PostDetail extends Component {
           <div>
             <Header />
             <main>
-              <article>
+              <article class="postDetail">
                 <header>
                   <div>
                     <p>Votes: {post.voteScore}</p>
@@ -79,7 +79,8 @@ class PostDetail extends Component {
                 <section>
                   <h2>Comments</h2>
                   <CreateComment post={post}/>
-                  <Sort sortFor="comment"/>
+                  {postComments.length > 1 ? <Sort sortFor="comment"/> : null}
+                 
                   {/* list of comments */}
                   <ul>
                     {Object.keys(postComments).map(index => (

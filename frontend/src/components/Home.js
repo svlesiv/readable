@@ -13,7 +13,7 @@ class Home extends Component {
     return (
       <div>
         <Header />
-        <Sort />
+        <Sort/>
         <main>
           <ul>
             {Object.keys(sortedPosts).map(index => (

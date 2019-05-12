@@ -1,0 +1,57 @@
+nav {
+	font-size: var(--base-font-size);
+  font-family: $font-family-body;
+  border-bottom: 1px solid $dark-base-color;
+	padding: {
+		top: 1em;
+		bottom: 1em;
+	}
+	> ul {
+		padding: 0;
+		margin: 0;
+		list-style-type: none;
+    text-align: left;
+    li {
+      display: inline;
+      padding-right: 3em;
+    }
+    .active {
+      color:$accent-color;
+    }
+    li > * {
+      display: inline-block;
+      text-decoration: none;
+      color: $text-color;
+      &:hover {
+        color: $accent-color;
+      }
+    }
+    li > button {
+      border: none;
+      background-color: transparent;
+      font-size: var(--base-font-size);
+      font-family: $font-family-body;
+      padding: 0;
+      margin-left: 0;
+      &:active, &:hover, &:focus {
+        color: $accent-color;
+        border-color: none;
+        box-shadow: none;
+      }
+      ul {
+        display: block;
+        padding: 0.5rem 0.8rem;
+        margin-top: 0.3rem;
+        background-color: $light-base-color;
+        position: absolute;
+        z-index: 1;
+        li {
+          display: block;
+          text-align: left;
+          padding: 0.1rem 0;
+        }
+      }
+    }
+	}
+}
+
