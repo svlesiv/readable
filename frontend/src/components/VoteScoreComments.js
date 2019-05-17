@@ -20,9 +20,9 @@ class VoteScore extends Component {
     
     return (
       <div className="vote">
-        <button onClick={this.handleUp}><FontAwesomeIcon icon={faArrowUp}/></button>
+        <FontAwesomeIcon className="iconButton" onClick={this.handleUp} icon={faArrowUp}/>
         <p>{comment.voteScore}</p>
-        <button onClick={this.handleDown}><FontAwesomeIcon icon={faArrowDown}/></button>
+        <FontAwesomeIcon className="iconButton" onClick={this.handleDown} icon={faArrowDown}/>
       </div>
     )
   }

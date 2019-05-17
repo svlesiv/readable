@@ -43,8 +43,8 @@ class Comment extends Component {
                 {comment.body}
               </div>
               <div className="buttonGroup">
-                <button onClick={this.handleEdit}><FontAwesomeIcon icon={faPen}/></button>
-                <button onClick={this.handleDelete}><FontAwesomeIcon icon={faTrash}/></button>
+                <FontAwesomeIcon className="iconButton" onClick={this.handleEdit} icon={faPen}/>
+                <FontAwesomeIcon className="iconButton" onClick={this.handleDelete} icon={faTrash}/>
               </div>
             </div>
           </section>

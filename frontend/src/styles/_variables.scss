@@ -2,7 +2,7 @@
 $base-color: rgba(245, 245, 245, 1);
 $light-base-color: lighten($base-color, 15);
 $dark-base-color: darken($base-color, 15);;
-$accent-color: hsla(195, 100%, 50%, 1);
+$accent-color: rgb(22, 149, 192);
 $accent-complementary-color: complement($accent-color);
 $text-color: rgba(15, 15, 15, 1);
 $text-color-light: lighten($text-color, 30);

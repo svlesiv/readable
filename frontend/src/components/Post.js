@@ -18,7 +18,6 @@ const Post = (props) => {
               </span>
               <Link to={`/${post.category}/${post.id}`}><h1>{post.title}</h1></Link>
             </header>
-            {/* todo: set max number of characters to display */}
             <p>{post.body}</p>
           </div>
         </>

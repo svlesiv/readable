@@ -24,3 +24,14 @@ button[disabled] {
     cursor: auto;
   }
 }
+
+.iconButton {
+  color: $accent-color;
+  cursor: pointer;
+}
+
+.buttonGroup {
+  .iconButton {
+    margin-right: 1em;
+  }
+}
