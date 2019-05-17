@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux'
 import { sort } from '../utils/helpers';
 
@@ -6,10 +6,8 @@ import Post from './Post';
 import Header from './Header';
 import Sort from './Sort';
 
-class Home extends Component {
-  render() {
-    const { sortedPosts } = this.props;
-
+const Home = (props) => {
+    const { sortedPosts } = props;
     return (
       <div>
         <Header />
@@ -26,7 +24,6 @@ class Home extends Component {
       </div>
     );
   }
-}
 
 function mapStateToProps ({ posts }) {
   const sortedPosts = sort(posts);

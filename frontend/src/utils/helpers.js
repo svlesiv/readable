@@ -8,23 +8,23 @@ function sortByDate(object) {
 
   let timestampsArr = [],
       timestampsMap = new Map();
-  Object.keys(object).map(index => {
+  Object.keys(object).forEach(index => {
     if(object[index].timestamp) {
       timestampsArr.push(object[index].timestamp);
       timestampsMap.set(object[index].timestamp, index);
     }
   });
-  
+
   if(!object.sortBy || object.sortBy === "dateNew") {
     timestampsArr = timestampsArr.sort((a, b) => b - a);
   } else {
     timestampsArr = timestampsArr.sort((a, b) => a - b);
   }
-  
-  for(let date of timestampsArr) { 
+
+  for(let date of timestampsArr) {
     sortedIds.push(object[timestampsMap.get(date)].id);
   }
-  
+
   for (let i = 0; i < sortedIds.length; i++) {
     Object.keys(object).forEach(index => {
       if (sortedIds[i] === object[index].id){
@@ -32,7 +32,7 @@ function sortByDate(object) {
       }
     });
   }
-  
+
   return sortedObject;
 }
 
@@ -42,23 +42,23 @@ function sortByVote(object) {
 
   let voteArr = [],
       voteMap = new Map();
-  Object.keys(object).map(index => {
+  Object.keys(object).forEach(index => {
     if(object[index].voteScore) {
       voteArr.push(object[index].voteScore);
       voteMap.set(object[index].voteScore, index);
     }
   });
-  
+
   if(object.sortBy === "voteHigh") {
     voteArr = voteArr.sort((a, b) => b - a);
   } else {
     voteArr = voteArr.sort((a, b) => a - b);
   }
-  
-  for(let date of voteArr) { 
+
+  for(let date of voteArr) {
     sortedIds.push(object[voteMap.get(date)].id);
   }
-  
+
   for (let i = 0; i < sortedIds.length; i++) {
     Object.keys(object).forEach(index => {
       if (sortedIds[i] === object[index].id){

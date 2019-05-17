@@ -10,7 +10,7 @@ class Header extends Component {
   toggleCategories = () => {
     this.setState((prev)=>({showCategories: !prev.showCategories}));
   }
-  
+
   render() {
     const { categories } = this.props;
     const { showCategories } = this.state;
@@ -26,14 +26,14 @@ class Header extends Component {
           </li>
           <li>
             <button onClick={this.toggleCategories}>Categories
-            {showCategories 
+            {showCategories
               ? (<ul>
                 {Object.keys(categories).map(index => (
                   <li key={index}>
                     <NavLink  to={`/${categories[index].name}`}>{categories[index].name}</NavLink>
                   </li>
                 ))}
-                </ul>) 
+                </ul>)
               : null}
               </button>
           </li>

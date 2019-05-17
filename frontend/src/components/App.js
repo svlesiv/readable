@@ -24,7 +24,7 @@ class App extends Component {
 
   render() {
     return (
-      <Router> 
+      <Router>
           {!this.state.isLoaded ? (
             <LoadingBar/>
           ) : (

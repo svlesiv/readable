@@ -1,15 +1,15 @@
 nav {
-	font-size: var(--base-font-size);
+  font-size: var(--base-font-size);
   font-family: $font-family-body;
   border-bottom: 1px solid $dark-base-color;
-	padding: {
-		top: 1em;
-		bottom: 1em;
-	}
-	> ul {
-		padding: 0;
-		margin: 0;
-		list-style-type: none;
+  padding: {
+    top: 1em;
+    bottom: 1em;
+  }
+  > ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
     text-align: left;
     li {
       display: inline;
@@ -52,6 +52,5 @@ nav {
         }
       }
     }
-	}
+  }
 }
-

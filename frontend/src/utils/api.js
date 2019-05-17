@@ -1,66 +1,66 @@
 export const fetchPosts = () =>
   fetch('http://localhost:3001/posts', {
     headers: { Authorization: 'whatever-you-want' }
-  }).then(data => data.json())
+  }).then(data => data.json());
 
 export const fetchCategories = () =>
-  fetch('http://localhost:3001/categories', { 
+  fetch('http://localhost:3001/categories', {
     headers: { 'Authorization': 'whatever-you-want' }
-  }).then(data => data.json())
+  }).then(data => data.json());
 
 export const apiAddPost = (post) =>
   fetch(`http://localhost:3001/posts`, {
     method: 'POST',
-    headers: { 
+    headers: {
       'Authorization': 'whatever-you-want',
-      'Content-Type': 'application/json' 
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(post)
-  }).then(data => data.json())
+  }).then(data => data.json());
 
 export const apiUpdatePost = (post) =>
   fetch(`http://localhost:3001/posts/${post.id}`, {
     method: 'PUT',
-    headers: { 
+    headers: {
       'Authorization': 'whatever-you-want',
-      'Content-Type': 'application/json' 
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(post)
-  }).then(data => data.json())
+  }).then(data => data.json());
 
 export const apiDeletePost = (post) =>
-  fetch(`http://localhost:3001/posts/${post.id}`, { 
+  fetch(`http://localhost:3001/posts/${post.id}`, {
     method: 'DELETE',
     headers: { 'Authorization': 'whatever-you-want' }
-  }).then(data => data.json())
+  }).then(data => data.json());
 
 export const fetchComments = (id) =>
-  fetch(`http://localhost:3001/posts/${id}/comments`, { 
+  fetch(`http://localhost:3001/posts/${id}/comments`, {
     headers: { 'Authorization': 'whatever-you-want' }
-  }).then(data => data.json())
+  }).then(data => data.json());
 
 export const apiAddComment = (comment) =>
   fetch(`http://localhost:3001/comments/`, {
     method: 'POST',
-    headers: { 
+    headers: {
       'Authorization': 'whatever-you-want',
-      'Content-Type': 'application/json' 
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(comment)
-  }).then(data => data.json())
+  }).then(data => data.json());
 
 export const apiUpdateComment = (comment) =>
   fetch(`http://localhost:3001/comments/${comment.id}`, {
     method: 'PUT',
-    headers: { 
+    headers: {
       'Authorization': 'whatever-you-want',
-      'Content-Type': 'application/json' 
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(comment)
-  }).then(data => data.json())
+  }).then(data => data.json());
 
 export const apiDeleteComment = (comment) =>
-  fetch(`http://localhost:3001/comments/${comment.id}`, { 
+  fetch(`http://localhost:3001/comments/${comment.id}`, {
     method: 'DELETE',
     headers: { 'Authorization': 'whatever-you-want' }
-  }).then(data => data.json())
+  }).then(data => data.json());

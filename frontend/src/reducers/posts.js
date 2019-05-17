@@ -1,14 +1,10 @@
-import { 
-  GET_POSTS, ADD_POST, DELETE_POST, UPDATE_POST, 
-  UP_VOTE, DOWN_VOTE, SET_SORT 
+import {
+  GET_POSTS, ADD_POST, DELETE_POST, UPDATE_POST,
+  UP_VOTE, DOWN_VOTE, SET_SORT
 } from '../actions/posts';
 
 function findKey(state, id) {
-  const key = Object.keys(state).find(key => {
-    if (state[key].id === id) {
-      return key;
-    }
-  });
+  const key = Object.keys(state).find(key => state[key].id === id);
   return key;
 }
 

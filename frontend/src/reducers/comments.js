@@ -1,15 +1,11 @@
-import { 
-  GET_COMMENTS, ADD_COMMENT, DELETE_COMMENT, UPDATE_COMMENT, 
+import {
+  GET_COMMENTS, ADD_COMMENT, DELETE_COMMENT, UPDATE_COMMENT,
   UP_VOTE_COMMENT, DOWN_VOTE_COMMENT, SET_SORT_COMMENT
 } from '../actions/comments';
 
 function findKey(state, id) {
-  const key = Object.keys(state).find(key => {
-    if (state[key].id === id) {
-      return key;
-    }
-  });
-  return key
+  const key = Object.keys(state).find(key => state[key].id === id);
+  return key;
 }
 
 export default function comments (state = {}, action) {

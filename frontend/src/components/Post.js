@@ -20,7 +20,7 @@ class Post extends Component {
     const { post } = this.props;
 
     return (
-      <section class="post">
+      <section className="post">
         {post ? (
           <>
            <header>

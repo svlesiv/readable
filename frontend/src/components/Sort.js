@@ -16,7 +16,7 @@ class Sort extends Component {
 
   render(){
     return(
-      <p>SORT 
+      <div>SORT
         <form className="sort">
           <select onChange={this.handleChange}>
             <option value = 'dateNew'>Newest first</option>
@@ -25,7 +25,7 @@ class Sort extends Component {
             <option value = 'voteLow'>Lowest voted</option>
           </select>
         </form>
-      </p>
+      </div>
     )
   }
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux'
 import { sort } from '../utils/helpers';
 
@@ -6,26 +6,23 @@ import Post from './Post';
 import Header from './Header';
 import Sort from './Sort';
 
-class Category extends Component {
-  render() {
-    const { categoryPosts } = this.props;
-
-    return (
-      <div>
-        <Header />
-        <Sort />
-        <main>
-          <ul>
-            {categoryPosts.map(post => (
-              <li key={post.id}>
-                <Post post={post} />
-              </li>
-            ))}
-          </ul>
-        </main>
-      </div>
-    );
-  }
+const Category = (props) => {
+  const { categoryPosts } = props;
+  return (
+    <div>
+      <Header />
+      <Sort />
+      <main>
+        <ul>
+          {categoryPosts.map(post => (
+            <li key={post.id}>
+              <Post post={post} />
+            </li>
+          ))}
+        </ul>
+      </main>
+    </div>
+  );
 }
 
 function mapStateToProps ({ posts }, props) {
