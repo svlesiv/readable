@@ -2,10 +2,13 @@
 @import "button";
 @import "form";
 @import "navigation";
-@import "post";
+@import "post-comment";
 
 /*css variables------------------*/
 :root{
+  --base-small-font-size: 0.9em;
+  --base-small-line-height: 1.3em;
+
   --base-font-size: 1em;
   --base-line-height: 1.375em;
 

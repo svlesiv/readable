@@ -5,6 +5,7 @@ $dark-base-color: darken($base-color, 15);;
 $accent-color: hsla(195, 100%, 50%, 1);
 $accent-complementary-color: complement($accent-color);
 $text-color: rgba(15, 15, 15, 1);
+$text-color-light: lighten($text-color, 30);
 
 /*fonts*/
 $font-family-header: "Playfair Display", serif;

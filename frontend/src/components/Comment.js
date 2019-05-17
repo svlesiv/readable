@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 
-import { handleDeleteComment, handleUpVoteComment, handleDownVoteComment } from '../actions/comments';
+import { handleDeleteComment } from '../actions/comments';
 import EditComment from './EditComment';
+import VoteScoreComments from './VoteScoreComments';
 
 class Comment extends Component {
   state = {
@@ -19,16 +22,6 @@ class Comment extends Component {
     dispatch(handleDeleteComment(comment));
   }
 
-  handleUp = () => {
-    const { dispatch, comment } = this.props;
-    dispatch(handleUpVoteComment(comment));
-  }
-
-  handleDown = () => {
-    const { dispatch, comment } = this.props;
-    dispatch(handleDownVoteComment(comment));
-  }
-
   render() {
     const { comment } = this.props;
     const { isEditClick } = this.state;
@@ -38,23 +31,22 @@ class Comment extends Component {
         {isEditClick
           ? <EditComment comment={comment}/>
           : (
-          <section>
-            <header>
-              <div>
-                <p>Votes: {comment.voteScore}</p>
-                <button onClick={this.handleUp}>UP</button>
-                <button onClick={this.handleDown}>DOWN</button>
-              </div>
-              <p>Posted on <time daytime={comment.timestamp}>
-                <Moment format="MM-DD-YYYY">{comment.timestamp}</Moment>
-                </time> by {comment.author}
-              </p>
-            </header>
+          <section className="comment">
+            <VoteScoreComments comment={comment}/>
             <div>
-              {comment.body}
+              <header className="commentHeader">
+                <span>Posted on by {comment.author} <time daytime={comment.timestamp}>
+                  <Moment format="MM-DD-YYYY">{comment.timestamp}</Moment></time> 
+                </span>
+              </header>
+              <div>
+                {comment.body}
+              </div>
+              <div className="buttonGroup">
+                <button onClick={this.handleEdit}><FontAwesomeIcon icon={faPen}/></button>
+                <button onClick={this.handleDelete}><FontAwesomeIcon icon={faTrash}/></button>
+              </div>
             </div>
-            <button onClick={this.handleEdit}>Edit</button>
-            <button onClick={this.handleDelete}>Delete</button>
           </section>
           )}
       </div>

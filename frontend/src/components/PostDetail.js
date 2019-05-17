@@ -2,15 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Moment from 'react-moment';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 import { handleGetComments } from '../actions/comments';
-import { handleDeletePost, handleUpVote, handleDownVote } from '../actions/posts';
+import { handleDeletePost } from '../actions/posts';
 import { sort } from '../utils/helpers';
 import Header from './Header';
 import EditPost from './EditPost';
 import Comment from './Comment';
 import CreateComment from './CreateComment';
 import Sort from './Sort';
+import VoteScore from './VoteScore';
 
 class PostDetail extends Component {
   state = {
@@ -34,16 +37,6 @@ class PostDetail extends Component {
     });
   }
 
-  handleUp = () => {
-    const { dispatch, post } = this.props;
-    dispatch(handleUpVote(post));
-  }
-
-  handleDown = () => {
-    const { dispatch, post } = this.props;
-    dispatch(handleDownVote(post));
-  }
-
   render() {
     const { post, postComments } = this.props;
     const { isEditClick, toHome } = this.state;
@@ -61,35 +54,36 @@ class PostDetail extends Component {
             <Header />
             <main>
               <article className="postDetail">
-                <header>
-                  <div>
-                    <p>Votes: {post.voteScore}</p>
-                    <button onClick={this.handleUp}>UP</button>
-                    <button onClick={this.handleDown}>DOWN</button>
-                  </div>
-                  <p>Posted on <time daytime={post.timestamp}>
-                    <Moment format="MM-DD-YYYY">{Math.floor(post.timestamp)}</Moment>
-                    </time> by {post.author}
-                  </p>
-                  <h1>{post.title}</h1>
-                </header>
-                <div>{post.body}</div>
-                <button onClick={this.handleEdit}>Edit</button>
-                <button onClick={this.handleDelete}>Delete</button>
-                <section>
-                  <h2>Comments</h2>
-                  <CreateComment post={post}/>
-                  {postComments.length > 1 ? <Sort sortFor="comment"/> : null}
+                <VoteScore post={post}/>
+                <div>
+                  <header className="postHeader">
+                    <span>Posted by {post.author} on <time daytime={post.timestamp}>
+                      <Moment format="MM-DD-YYYY">{Math.floor(post.timestamp)}</Moment></time> 
+                    </span>
+                    <h1>{post.title}</h1>
+                  </header>
 
-                  {/* list of comments */}
-                  <ul>
-                    {Object.keys(postComments).map(index => (
-                      <li key={index}>
-                        <Comment comment={postComments[index]}/>
-                      </li>
-                    ))}
-                  </ul>
-                </section>
+                  <div>{post.body}</div>
+
+                  <div className="buttonGroup">
+                    <button onClick={this.handleEdit}><FontAwesomeIcon icon={faPen}/></button>
+                    <button onClick={this.handleDelete}><FontAwesomeIcon icon={faTrash}/></button>
+                  </div>
+
+                  <section>
+                    <CreateComment post={post}/>
+                    {postComments.length > 1 ? <Sort sortFor="comment"/> : null}
+
+                    {/* list of comments */}
+                    <ul>
+                      {Object.keys(postComments).map(index => (
+                        <li key={index}>
+                          <Comment comment={postComments[index]}/>
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                </div>
               </article>
             </main>
           </div>

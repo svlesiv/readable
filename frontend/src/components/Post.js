@@ -1,47 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import Moment from 'react-moment';
 
-import { handleUpVote, handleDownVote } from '../actions/posts';
+import VoteScore from './VoteScore';
 
-class Post extends Component {
-  handleUp = () => {
-    const { dispatch, post } = this.props;
-    dispatch(handleUpVote(post));
-  }
-
-  handleDown = () => {
-    const { dispatch, post } = this.props;
-    dispatch(handleDownVote(post));
-  }
-
-  render() {
-    const { post } = this.props;
-
-    return (
-      <section className="post">
-        {post ? (
-          <>
-           <header>
-              <div>
-                <p>Votes: {post.voteScore}</p>
-                <button onClick={this.handleUp}>UP</button>
-                <button onClick={this.handleDown}>DOWN</button>
-              </div>
-             <p>Posted on <time daytime={post.timestamp}>
-                <Moment format="MM-DD-YYYY">{Math.floor(post.timestamp/2)}</Moment>
-                </time> by {post.author}
-              </p>
+const Post = (props) => {
+  const { post } = props;
+  return (
+    <section className="post">
+      {post ? (
+        <>
+          <VoteScore post={post}/>
+          <div>
+            <header className="postHeader">
+              <span>Posted by {post.author} on <time daytime={post.timestamp}>
+                <Moment format="MM-DD-YYYY">{Math.floor(post.timestamp/2)}</Moment></time> 
+              </span>
               <Link to={`/${post.category}/${post.id}`}><h1>{post.title}</h1></Link>
             </header>
             {/* todo: set max number of characters to display */}
             <p>{post.body}</p>
-          </>
-        ) : null}
-      </section>
-    );
-  }
+          </div>
+        </>
+      ) : null}
+    </section>
+  );
 }
 
-export default connect()(Post);
+export default Post;

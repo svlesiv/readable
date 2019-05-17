@@ -61,7 +61,7 @@ class EditPost extends Component {
           <input type='text' id='title' name='title' onChange={this.handleChange} value={title} />
 
           <label htmlFor='body'>Content</label>
-          <textarea type='text' id='body' name='body' onChange={this.handleChange} value={body}/>
+          <textarea type='text' id='body' name='body' onChange={this.handleChange} value={body} rows='25'/>
 
           <button type='submit' disabled={author === '' || category === '' || title === '' || body === '' }>
             Submit
