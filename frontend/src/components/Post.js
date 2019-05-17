@@ -14,7 +14,7 @@ const Post = (props) => {
           <div>
             <header className="postHeader">
               <span>Posted by {post.author} on <time daytime={post.timestamp}>
-                <Moment format="MM-DD-YYYY">{Math.floor(post.timestamp/2)}</Moment></time> 
+                <Moment format="MM-DD-YYYY">{post.timestamp}</Moment></time> 
               </span>
               <Link to={`/${post.category}/${post.id}`}><h1>{post.title}</h1></Link>
             </header>

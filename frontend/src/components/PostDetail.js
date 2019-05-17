@@ -58,7 +58,7 @@ class PostDetail extends Component {
                 <div>
                   <header className="postHeader">
                     <span>Posted by {post.author} on <time daytime={post.timestamp}>
-                      <Moment format="MM-DD-YYYY">{Math.floor(post.timestamp)}</Moment></time> 
+                      <Moment format="MM-DD-YYYY">{post.timestamp}</Moment></time> 
                     </span>
                     <h1>{post.title}</h1>
                   </header>
