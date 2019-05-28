@@ -1,5 +1,4 @@
 .post {
-  border: 1px solid $dark-base-color;
   a {
     text-decoration: none;
     color: darken($accent-color, 10);
@@ -20,6 +19,7 @@ ul {
   display: flex;
   background-color: $light-base-color;
   padding: 4vh 2vw;
+  border: 1px solid $dark-base-color;
   border-radius: 4px;
   margin: 2vh 0;
   .sort {
@@ -33,7 +33,9 @@ ul {
     color: $text-color-light;
   }
   h1 {
-    line-height: 0;
+    display: block;
+    margin:0;
+    padding:0;
   }
 }
 
@@ -48,7 +50,7 @@ ul {
 
 .comment {
   display: flex;
-  margin: 2em 0;
+  margin: 1em 0;
 }
 
 h1 {

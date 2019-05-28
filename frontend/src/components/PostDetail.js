@@ -8,7 +8,7 @@ import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { handleGetComments } from '../actions/comments';
 import { handleDeletePost } from '../actions/posts';
 import { sort } from '../utils/helpers';
-import Header from './Header';
+import Navigation from './Navigation';
 import EditPost from './EditPost';
 import Comment from './Comment';
 import CreateComment from './CreateComment';
@@ -50,8 +50,10 @@ class PostDetail extends Component {
         {isEditClick
         ? <EditPost  post={post}/>
         : (
-          <div>
-            <Header />
+          <div class="grid-wrapper">
+            <header>
+              <Navigation />
+            </header>
             <main>
               <article className="postDetail">
                 <VoteScore post={post}/>

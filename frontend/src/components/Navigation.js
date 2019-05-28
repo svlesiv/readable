@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux'
 
-class Header extends Component {
+class Navigation extends Component {
   state = {
     showCategories: false
   }
@@ -49,4 +49,4 @@ function mapStateToProps ({ categories }) {
   };
 }
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps)(Navigation);

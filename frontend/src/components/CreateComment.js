@@ -40,7 +40,7 @@ class CreateComment extends Component {
         <input type='text' id='author' name='author' onChange={this.handleChange} value={author} placeholder="Author"/>
         <textarea type='text' id='body' name='body' onChange={this.handleChange} value={body} placeholder="Comment" rows="6"/>
         <button type='submit' disabled={author === '' || body === ''}>Submit</button>
-    </form>
+      </form>
     );
   }
 }

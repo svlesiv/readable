@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Header from './Header';
+import Navigation from './Navigation';
 import { handleAddPost } from '../actions/posts';
 import { uuid } from '../utils/helpers';
 
@@ -48,25 +48,29 @@ class CreatePost extends Component {
     }
 
     return (
-      <div>
-        <Header />
-        <form onSubmit={this.handleSubmit}>
-          <legend>Create a new Post</legend>
-          <input type='text' id='author' name='author' onChange={this.handleChange} value={author} placeholder="Author"/>
+      <div class="grid-wrapper">
+        <header>
+          <Navigation />
+        </header>
+        <main>
+          <form onSubmit={this.handleSubmit}>
+            <legend>Create a new Post</legend>
+            <input type='text' id='author' name='author' onChange={this.handleChange} value={author} placeholder="Author"/>
 
-          <select type='text' id='category' name='category' onChange={this.handleChange} value={category}>
-            <option>react</option>
-            <option>redux</option>
-            <option>udacity</option>
-          </select>
+            <select type='text' id='category' name='category' onChange={this.handleChange} value={category}>
+              <option>react</option>
+              <option>redux</option>
+              <option>udacity</option>
+            </select>
 
-          <input type='text' id='title' name='title' onChange={this.handleChange} value={title} placeholder="Title"/>
-          <textarea type='text' id='body' name='body' onChange={this.handleChange} value={body} placeholder="Content" rows="6"/>
+            <input type='text' id='title' name='title' onChange={this.handleChange} value={title} placeholder="Title"/>
+            <textarea type='text' id='body' name='body' onChange={this.handleChange} value={body} placeholder="Content" rows="25"/>
 
-          <button type='submit' disabled={author === '' || category === '' || title === '' || body === '' }>
-            Submit
-          </button>
-        </form>
+            <button type='submit' disabled={author === '' || category === '' || title === '' || body === '' }>
+              Submit
+            </button>
+          </form>
+        </main>
       </div>
     );
   }

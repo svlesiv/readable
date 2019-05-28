@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import Header from './Header';
+import Navigation from './Navigation';
 import { handleUpdatePost } from '../actions/posts';
 
 class EditPost extends Component {
@@ -42,31 +42,35 @@ class EditPost extends Component {
     const { author, category, title, body } = this.state;
 
     return (
-      <div>
-        <Header />
-        <form onSubmit={this.handleSubmit}>
-          <legend>Update a Post</legend>
+      <div class="grid-wrapper">
+        <header>
+          <Navigation />
+        </header>
+        <main>
+          <form onSubmit={this.handleSubmit}>
+            <legend>Update a Post</legend>
 
-          <label htmlFor='author'>Author</label>
-          <input type='text' id='author' name='author' onChange={this.handleChange} value={author}/>
+            <label htmlFor='author'>Author</label>
+            <input type='text' id='author' name='author' onChange={this.handleChange} value={author}/>
 
-          <label htmlFor='category'></label>
-          <select type='text' id='category' name='category' onChange={this.handleChange} value={category}>
-            <option>react</option>
-            <option>redux</option>
-            <option>udacity</option>
-          </select>
+            <label htmlFor='category'></label>
+            <select type='text' id='category' name='category' onChange={this.handleChange} value={category}>
+              <option>react</option>
+              <option>redux</option>
+              <option>udacity</option>
+            </select>
 
-          <label htmlFor='title'>Title</label>
-          <input type='text' id='title' name='title' onChange={this.handleChange} value={title} />
+            <label htmlFor='title'>Title</label>
+            <input type='text' id='title' name='title' onChange={this.handleChange} value={title} />
 
-          <label htmlFor='body'>Content</label>
-          <textarea type='text' id='body' name='body' onChange={this.handleChange} value={body} rows='25'/>
+            <label htmlFor='body'>Content</label>
+            <textarea type='text' id='body' name='body' onChange={this.handleChange} value={body} rows='25'/>
 
-          <button type='submit' disabled={author === '' || category === '' || title === '' || body === '' }>
-            Submit
-          </button>
-        </form>
+            <button type='submit' disabled={author === '' || category === '' || title === '' || body === '' }>
+              Submit
+            </button>
+          </form>
+        </main>
       </div>
     );
   }

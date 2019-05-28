@@ -3,15 +3,17 @@ import { connect } from 'react-redux'
 import { sort } from '../utils/helpers';
 
 import Post from './Post';
-import Header from './Header';
+import Navigation from './Navigation';
 import Sort from './Sort';
 
 const Category = (props) => {
   const { categoryPosts } = props;
   return (
-    <div>
-      <Header />
-      <Sort />
+    <div class="grid-wrapper">
+      <header>
+        <Navigation />
+        <Sort />
+      </header>
       <main>
         <ul>
           {categoryPosts.map(post => (

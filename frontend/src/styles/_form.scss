@@ -1,6 +1,8 @@
+main > form, section > form {
+  padding: 4vh 2vw;
+}
 form {
   background-color: $light-base-color;
-  padding: 4vh 2vw;
   border-radius: 4px;
   border: 1px solid $dark-base-color;
 
@@ -27,6 +29,9 @@ form {
     margin-top: 5vh;
     font-family: $font-family-header;
     color: darken($accent-color, 5);
+  }
+  select{
+    width: auto;
   }
 }
 
